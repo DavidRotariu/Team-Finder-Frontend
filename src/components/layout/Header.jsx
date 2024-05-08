@@ -23,6 +23,10 @@ export default function GenericHeader() {
         await logout();
     }
 
+    const handleUpgrade = async () => {
+        navigate('/membership');
+    }
+
     const [Value, setValue] = useLocalStorage({
         defaultValue: '',
     });
@@ -131,6 +135,9 @@ export default function GenericHeader() {
     return (
         <div className={`${darkMode && 'dark'}`} >
             <div className="dark:bg-darkcanvas bg-canvas select-none">
+                <div className="bg-accent h-[35px] flex justify-center items-center">
+                    <Title className="text-white text-[15px]" onClick={handleUpgrade}>This organization is currently using a free trial account. Click here to upgrade!</Title>
+                </div>
                 <div className="p-[20px] flex flex-col md:flex-row items-start md:items-center justify-between">
                     <div>
                         <h1 className="text-3xl font-bold dark:text-darktext text-text">Welcome back, {auth?.name}</h1>
@@ -227,6 +234,12 @@ export default function GenericHeader() {
                                     <hr className="mt-[10px]"></hr>
                                     <Text size="s" className="text-center pt-1 " style={{ color: darkMode ? 'white' : 'black' }}>{auth.org_name}</Text>
                                     <Text size="s" className="text-center pt-1 " style={{ color: darkMode ? 'white' : 'black' }}>{auth.hq_address}</Text>
+                                    {auth?.roles.includes("admin") &&
+                                        <div className="flex justify-center">
+                                            <Button className="bg-[#FF3D2E] mt-2 hover:bg-btn_hover font-bold text-white" onClick={handleUpgrade}>Manage membership</Button>
+                                        </div>
+                                    }
+                                    <hr className="mt-[10px]"></hr>
                                 </div>
                                 <div className="flex justify-between items-center">
                                     <Switch className="pt-2" size="lg" onLabel={sunIcon} offLabel={moonIcon} onClick={toogleDarkMode} />

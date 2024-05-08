@@ -30,6 +30,8 @@ import Invalid from './components/pages/Invalid';
 import { ModalsProvider } from '@mantine/modals';
 import ResetPassword from './components/auth/ResetPassword';
 import NewPassword from './components/auth/NewPassword';
+import Expired from './components/pages/Expired';
+import Membership from './components/pages/Membership';
 
 export const Context = React.createContext();
 
@@ -58,23 +60,26 @@ export default function App() {
 
                                 <Route element={<RequireAuth allowedRoles={[]} />}>
                                     {/* YOU HAVE TO BE LOGGED IN TO SEE THESE PAGES */}
-                                    <Route path='/myskills' element={<MainPage Content={MySkillsPage} />} />
-                                    <Route path='/myprojects' element={<MainPage Content={MyProjects} />} />
-                                    <Route path='/organizationskills' element={<MainPage Content={OrganizationSkillsPage} />} />
+                                    <Route path='myskills' element={<MainPage Content={MySkillsPage} />} />
+                                    <Route path='myprojects' element={<MainPage Content={MyProjects} />} />
+                                    <Route path='organizationskills' element={<MainPage Content={OrganizationSkillsPage} />} />
                                 </Route>
 
                                 <Route element={<RequireAuth allowedRoles={["admin"]} />}>
-                                    <Route path='/organizationemployees' element={<MainPage Content={OrganizationEmployeesPage} />} />
-                                    <Route path='/organizationdepartments' element={<MainPage Content={OrganizationDepartmentsPage} />} />
+                                    <Route path='organizationemployees' element={<MainPage Content={OrganizationEmployeesPage} />} />
+                                    <Route path='organizationdepartments' element={<MainPage Content={OrganizationDepartmentsPage} />} />
+
+                                    <Route path='membership' element={<MainPage Content={Membership} />} />
+                                    <Route path="expired" element={<Expired />} />
                                 </Route>
 
                                 <Route element={<RequireAuth allowedRoles={["dept_manager"]} />}>
-                                    <Route path='/mydepartment' element={<MainPage Content={MyDepartment} />} />
-                                    <Route path='/departmentprojects' element={<MainPage Content={DepartmentProjects} />} />
+                                    <Route path='mydepartment' element={<MainPage Content={MyDepartment} />} />
+                                    <Route path='departmentprojects' element={<MainPage Content={DepartmentProjects} />} />
                                 </Route>
 
                                 <Route element={<RequireAuth allowedRoles={["proj_manager"]} />}>
-                                    <Route path='/projects' element={<MainPage Content={ProjectsPage} />} />
+                                    <Route path='projects' element={<MainPage Content={ProjectsPage} />} />
                                 </Route>
 
                             </Route>

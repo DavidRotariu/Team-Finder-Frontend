@@ -51,10 +51,11 @@ export default function LoginPage() {
             const org_name = response?.data?.org_name;
             const hq_address = response?.data?.hq_address;
             const roles = [...response.data.roles];
+            const status = response?.data?.organization_status
 
             // console.log('Your access token is:', accessToken);
 
-            setAuth({ name, email, org_name, hq_address, roles, accessToken })
+            setAuth({ name, email, org_name, hq_address, roles, accessToken, status })
 
             // console.log(roles);
 
